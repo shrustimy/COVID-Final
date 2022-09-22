@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Home Covid Slot Booking</title>
+  {% block title %}{% endblock title %}
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="static/assets/img/favicon.png" rel="icon">
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/assets/css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
+      <div class="align-items-center d-none d-md-flex">
+        <i class="bi bi-clock"></i> 24*7 Available
+      </div>
+      <div align="center"> Savadhan</div>
+      <div class="d-flex align-items-center">
+        <i class="bi bi-phone"></i> Call us now +919986786453
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <a href="/" class="logo me-auto"><img src="static/assets/img/logo.png" alt=""></a>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto " href="/hh">Home</a></li>
+
+          <li><a class="nav-link scrollto" href="/updetails">Patients Details</a></li>
+          <li><a class="nav-link scrollto" href="/utriger">Operations</a></li>
+
+          <li class="dropdown"><a href="/login"><span>Welcome {{current_user.email}}</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+
+              <li><a href="/slotbooking">Book Slot</a></li>
+              <li><a href="/logout">Logout</a></li>
+      
+           
+            </ul>
+          </li>
+
+          <li><a class="nav-link scrollto" href="/contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  
+  <main id="main">
+
+  {% include "message.html" %}
+  {% block body %}{% endblock body %}
+  <br />
+<br />
+<br />
+<br />
+<br />
+
+<div class="container mt-4">
+  <div class="display-4 text-center text-info">Book Bed Slot</div>
+  <br />
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        {% include "message.html" %}
+        <h4 class="text-center text-success">Covid Care Center</h4>
+        <div class="card-body bg-light">
+          <form action="/slotbooking" method="post">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control mt-2"
+                name="srfid"
+                value="{{current_user.srfid}}"
+                readonly
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <select id="bedtype" name="bedtype" class="form-control" required>
+                <option selected>Choose Bed Type</option>
+                <option value="NormalBed">Normal Bed</option>
+                <option value="HICUBed">HICU Bed</option>
+                <option value="ICUBed">ICU Bed</option>
+                <option value="VENTILATORBed">VENTILATOR Bed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control mt-2"
+                name="hcode"
+                placeholder="Enter Hospital Code"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="number"
+                class="form-control mt-2"
+                name="spo2"
+                placeholder="Oxygen Level "
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control mt-2"
+                name="pname"
+                placeholder="Patient Name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control mt-2"
+                name="pphone"
+                placeholder="Patient Phone Number"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control mt-2"
+                name="paddress"
+                placeholder="Patient Address"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input id="datefield"
+              type="date"
+                class="form-control mt-2"
+                name="date"
+                placeholder="Date"
+                required />
+
+
+<script>                                                                                                                                                       var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+   dd = '0' + dd;
+}
+
+if (mm < 10) {
+   mm = '0' + mm;
+} 
+    
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("datefield").setAttribute("min", today);
+</script>
+            </div>
+            
+
+            <br />
+            <button class="btn btn-info" type="submit">Book Slot</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-8">
+    
+    <table class="table table-light">
+  <thead>
+  <h3 class="text-center text-white bg-secondary">Available Beds</h3>
+    <tr>
+      
+      <th scope="col">Hospital Code</th>
+      <th scope="col">Hospital Name</th>
+      <th scope="col">Normal Bed</th>
+      <th scope="col">Normal Cost</th>
+      <th scope="col">HICU Bed</th>
+      <th scope="col">HICU Cost</th>
+      <th scope="col">I.C.U Bed</th>
+      <th scope="col">I.C.U Cost</th>
+      <th scope="col">Ventilator Bed</th>
+      <th scope="col">Ventilator Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in query1 %}
+   <tr>
+      <td>{{post.hcode}}</td>
+      <td>{{post.hname}}</td>
+      <td>{{post.normalbed}}</td>
+      <td>{{post.normalbedcost}}</td>
+      <td>{{post.hicubed}}</td>
+      <td>{{post.hicubedcost}}</td>
+      <td>{{post.icubed}}</td>
+      <td>{{post.icubedcost}}</td>
+      <td>{{post.vbed}}</td>
+      <td>{{post.vbedcost}}</td>
+    </tr>
+   
+  {% endfor %}
+   
+  </tbody>
+</table>
+    
+    </div>
+  </div>
+</div>
+  <br>
+  <br>
+  <br>
+  <br>
+
+<!-- footer-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>Savadhan</h3>
+              <p>
+                A108 Banashankari <br>
+                2nd Stage, Banglore<br><br>
+                <strong>Phone:</strong> +91 9845548855<br>
+                <strong>Email:</strong> info@example.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p>Get in touch with us</p>
+            <form action="/subscribe" method="post">
+              
+              <input type="email" name="email"><input type="submit" value="Subscribe" required>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Savadhan</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medicio-free-bootstrap-theme/ -->
+        Designed by <a href="#">RS</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+<!--
+ <footer>
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>rs</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+       
+        Designed by <a href="">rama</a>
+      </div>
+    </div>
+  </footer> End Footer --> 
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="static/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="static/assets/vendor/aos/aos.js"></script>
+  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="static/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="static/assets/js/main.js"></script>
+
+</body>
+
+</html>
+
